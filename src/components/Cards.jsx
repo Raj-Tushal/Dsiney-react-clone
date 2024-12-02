@@ -40,6 +40,7 @@ export function Poster({ img, video }) {
         className="w-full h-full object-cover rounded-xl absolute top-0 left-0 opacity-0 hover:opacity-100"
         muted
         loop
+      autoPlay
         onMouseEnter={(e) => e.target.play()}
         onMouseLeave={(e) => e.target.pause()}
       ></video>
