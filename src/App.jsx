@@ -5,7 +5,7 @@ import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import DetailPage from "./components/Detail.jsx";
 import ContextStore from "./components/Context Store/Store.jsx";
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route,  } from "react-router-dom";
 function App() {
   return (
     <div className="w-full h-screen">

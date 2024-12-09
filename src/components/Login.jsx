@@ -17,7 +17,7 @@ function Login() {
     try {
       const response = await signInWithGooglePopup();
       console.log("Response:", response);
-    dispatch({ type: 'SET_USER', payload: response.user.photoURL });
+    // dispatch({ type: 'SET_USER', payload: response.user.photoURL });
       if (response?.user?.photoURL) {
         setTimeout(() => navigate('/home'), 500); 
       } else {
@@ -32,10 +32,13 @@ function Login() {
     auth.onAuthStateChanged((userData)=>{
       console.log(userData,"==>use data")
       if(userData?.email)
+       {
         navigate('/home')
-      
+        dispatch({ type: 'SET_USER', payload: userData.photoURL });  
+       }
     })
   })
+  
 
   return (
     <div>

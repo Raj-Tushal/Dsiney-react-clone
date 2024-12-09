@@ -2,9 +2,23 @@ import React, { useState,useContext } from "react";
 import logo from "../assets/logo.png";
 import profilPic from "../assets/raj.jpg";
 import myContext from "./Context Store/MyContext";
+import { signOutWithGoogle } from "../utils";
+import { useNavigate } from "react-router-dom";
 function Header({ isLoginPage}) {
   const [toggle, setToggle] = useState(false);
  const { state} = useContext(myContext);
+ const navigate = useNavigate();
+
+ const handlelogOut = ()=>{
+signOutWithGoogle()
+.then(()=>{
+  console.log("signed out")
+  navigate('/')
+})
+.catch((err)=>{
+  console.log("err",err)
+});
+ }
   return (
     <header
       className="w-full h-[60px] bg-[#090b13] flex justify-between items-center px-12
@@ -101,6 +115,8 @@ function Header({ isLoginPage}) {
           </div>
 
           {/* Profile Picture */}
+          <button className="bg-white w-[140px] text-black px-4 py-2 rounded-lg tracking-widest text-sm"
+          onClick={handlelogOut}>log out</button>
           <img src={state.ProfPic || profilPic} alt="Profile" className="w-10 h-10 rounded-full" />
         </div>
       )}
