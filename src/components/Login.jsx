@@ -7,7 +7,7 @@ import logo from '../assets/logo.png';
 import hulu from '../assets/hulu.png';
 import espn from '../assets/espn+.png';
 import loginLogoBar from '../assets/cta-logo-two.png';
-import { signInWithGooglePopup } from '../utils';
+import { auth, signInWithGooglePopup } from '../utils';
 function Login() {
   const { dispatch } = useContext(myContext);
   const navigate = useNavigate();
@@ -27,6 +27,15 @@ function Login() {
       console.error('Error during Google Sign-In:', error);
     }
   };
+
+  useEffect(()=>{
+    auth.onAuthStateChanged((userData)=>{
+      console.log(userData,"==>use data")
+      if(userData?.email)
+        navigate('/home')
+      
+    })
+  })
 
   return (
     <div>
