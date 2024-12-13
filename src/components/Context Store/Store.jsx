@@ -13,7 +13,9 @@ const reducer = (state, action) => {
     case 'SET_USER':
     return {
       ...state,
-      ProfPic: action.payload
+      ProfPic: action.payload.userPhoto,
+     isUserVarified:action.payload.isVerified
+
     };
     default:
     return state;
@@ -23,6 +25,7 @@ function Store({children}) {
   const initialState = {
     movies:MoviesData,
     ProfPic:null,
+    isUserVarified:null
   };
     const [state, dispatch] = useReducer(reducer, initialState);
   return (

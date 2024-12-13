@@ -19,6 +19,7 @@ function Login() {
       console.log("Response:", response);
     // dispatch({ type: 'SET_USER', payload: response.user.photoURL });
       if (response?.user?.photoURL) {
+        console.log(response,"==>response")
         setTimeout(() => navigate('/home'), 500); 
       } else {
         alert('Authentication failed! Please try again.');
@@ -30,11 +31,14 @@ function Login() {
 
   useEffect(()=>{
     auth.onAuthStateChanged((userData)=>{
-      console.log(userData,"==>use data")
+      console.log(userData,"==>user data")
       if(userData?.email)
        {
         navigate('/home')
-        dispatch({ type: 'SET_USER', payload: userData.photoURL });  
+        dispatch({ type: 'SET_USER', payload: {
+         userPhoto: userData.photoURL,
+         isVerified: userData.emailVerified
+        }});  
        }
     })
   })

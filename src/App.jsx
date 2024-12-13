@@ -6,6 +6,7 @@ import Login from "./components/Login.jsx";
 import DetailPage from "./components/Detail.jsx";
 import ContextStore from "./components/Context Store/Store.jsx";
 import { BrowserRouter, Routes, Route,  } from "react-router-dom";
+import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 function App() {
   return (
     <div className="w-full h-screen">
@@ -13,7 +14,12 @@ function App() {
     <BrowserRouter>
         <Routes>
 
-          {/* Home Page */}
+
+   {/* LoginPage */}
+   <Route path="/" element={<Login />} key="login" />
+
+         <Route element={<ProtectedRoutes/>}>
+            {/* Home Page */}
           <Route
             path="/home"
             element={
@@ -24,11 +30,10 @@ function App() {
             }
           />
           
-          {/* LoginPage */}
-          <Route path="/" element={<Login />} key="login" />
-
           {/* DetailPage */}
          <Route path="/detailPage/:specificIndex" element={<DetailPage />} /> 
+
+         </Route>
         </Routes>
       </BrowserRouter>
     </ContextStore>
